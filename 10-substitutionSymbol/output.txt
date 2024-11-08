@@ -1,0 +1,55 @@
+	MOV AX, 257
+	MOV CX, 254
+	MOV BL, 10H
+
+	MOV AL, BL
+	MOV BX, DX
+
+15: 	MOV AX, 18
+	MOV BX, 21
+
+	MOV    18, AX
+	MOV    21, BX
+	MOV    29, AX
+	MOV    32, BX
+
+	JA  15
+	JB  56
+
+	ADD AX, 257
+	ADD [CX], 16
+	ADD [BL], 10
+	ADD AX, [BX+SI]
+
+	ADD DI, AX
+	ADD BX, [DX]
+
+56: 	SUB AX, 257
+60: 	SUB AX, BX
+	SUB CX, AX
+	CMP BX, DX
+
+70: 	SUB AX, 21
+74: 	SUB BX, 18
+
+	MOV    32, AX
+	MOV    29, BX
+
+84: 	SUB 21, AX
+88: 	SUB 18, BX
+
+	JZ 60
+	JA 70
+	JB 74
+	JAE 84
+	JBE 88
+
+	INC AX
+	DEC DX
+
+	INT 21H
+
+18 DW 259
+21 DW 256
+29 DB 17
+32 DB 254
