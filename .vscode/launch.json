@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "configurations": [
+      {
+          "name": "C/C++: gcc 활성 파일 빌드 및 디버그",
+          "type": "cppdbg",
+          "request": "launch",
+          "program": "${fileDirname}/${fileBasenameNoExtension}.exe",  // .exe 확장자 추가
+          "args": [],
+          "stopAtEntry": false,
+          "cwd": "${fileDirname}",
+          "environment": [],
+          "externalConsole": false,
+          "MIMode": "gdb",
+          "preLaunchTask": "C/C++: gcc 활성 파일 빌드"
+      }
+  ]
+}
