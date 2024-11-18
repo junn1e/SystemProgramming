@@ -1,0 +1,55 @@
+	op regnum, 257
+	op regnum, num
+	op reg8, numH
+
+	op reg8, reg8
+	op regnum, DX
+
+sym: 	op regnum, DATA1
+	op regnum, DATA2
+
+	op    DATA1, regnum
+	op    DATA2, regnum
+	op    DATA3, regnum
+	op    DATA4, regnum
+
+	JA  sym
+	JB  sym
+
+	op regnum, 257
+	op [regnum], num
+	op [reg8], num
+	op regnum, [regnum+SI]
+
+	op reg16, regnum
+	op regnum, [DX]
+
+sym: 	op regnum, 257
+sym: 	op regnum, regnum
+	op regnum, regnum
+	op regnum, DX
+
+sym: 	op regnum, DATA2
+sym: 	op regnum, DATA1
+
+	op    DATA4, regnum
+	op    DATA3, regnum
+
+sym: 	op DATA2, regnum
+sym: 	op DATA1, regnum
+
+	JZ sym
+	JA sym
+	JB sym
+	JAE sym
+	JBE sym
+
+	op regnum
+	op DX
+
+	op 21H
+
+DATA1 pop 259
+DATA2 pop num
+DATA3 pop 17
+DATA4 pop num
