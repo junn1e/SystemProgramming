@@ -1,55 +1,55 @@
-	op regnum, 257
-	op regnum, num
-	op reg8, numH
+	op reg16, num
+	op reg16, num
+	op reg8, num
 
 	op reg8, reg8
-	op regnum, DX
+	op reg16, reg16
 
-sym: 	op regnum, DATA1
-	op regnum, DATA2
+sym: 	op reg16, sym
+	op reg16, sym
 
-	op    DATA1, regnum
-	op    DATA2, regnum
-	op    DATA3, regnum
-	op    DATA4, regnum
+	op    sym, reg16
+	op    sym, reg16
+	op    sym, reg16
+	op    sym, reg16
 
-	JA  sym
-	JB  sym
+	op  sym
+	op  sym
 
-	op regnum, 257
-	op [regnum], num
+	op reg16, num
+	op [reg16], num
 	op [reg8], num
-	op regnum, [regnum+SI]
+	op reg16, [reg16+reg16]
 
-	op reg16, regnum
-	op regnum, [DX]
+	op reg16, reg16
+	op reg16, [reg16]
 
-sym: 	op regnum, 257
-sym: 	op regnum, regnum
-	op regnum, regnum
-	op regnum, DX
+sym: 	op reg16, num
+sym: 	op reg16, reg16
+	op reg16, reg16
+	op reg16, reg16
 
-sym: 	op regnum, DATA2
-sym: 	op regnum, DATA1
+sym: 	op reg16, sym
+sym: 	op reg16, sym
 
-	op    DATA4, regnum
-	op    DATA3, regnum
+	op    sym, reg16
+	op    sym, reg16
 
-sym: 	op DATA2, regnum
-sym: 	op DATA1, regnum
+sym: 	op sym, reg16
+sym: 	op sym, reg16
 
-	JZ sym
-	JA sym
-	JB sym
-	JAE sym
-	JBE sym
+	op sym
+	op sym
+	op sym
+	opE sym
+	opE sym
 
-	op regnum
-	op DX
+	op reg16
+	op reg16
 
-	op 21H
+	op num
 
-DATA1 pop 259
-DATA2 pop num
-DATA3 pop 17
-DATA4 pop num
+sym pop num
+sym pop num
+sym pop num
+sym pop 254
