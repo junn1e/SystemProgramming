@@ -49,7 +49,7 @@ void read_first(FILE* input, Symbol* symbolTable, int* symbolCount) {
         token = strtok(line, delimiter);
         while (token != NULL)
         {
-            if (strchr(token, ':') || strstr(token, "DATA")) { //�ɺ��� ã���� ��:
+            if (strchr(token, ':') || strstr(token, "DATA")) {
                 cleanse(token);
                 addSymbol(symbolTable, symbolCount, token, address);
             }
@@ -73,7 +73,7 @@ void read_second(FILE* input, Symbol* symbolTable, int symbolCount, FILE* output
                 char temp[MAX_LINE_LENGTH];
                 temp[0] = '\0';
 
-                strncpy(temp, line, symbolpos); //ġȯ �˰�����
+                strncpy(temp, line, symbolpos);
                 temp[symbolpos] = '\0';
                 strcat(temp, symbolAddr);
                 strcat(temp, pos + strlen(symbolTable[i].symbol));
