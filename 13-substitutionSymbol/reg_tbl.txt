@@ -1,0 +1,16 @@
+AL b 000
+AX w 000
+CL b 001
+CX w 001
+DL b 010
+DX w 010
+BL b 011
+BX w 011
+AH b 100
+SP w 100
+CH b 101
+BP w 101
+DH b 110
+SI w 110
+BH b 111
+DI w 111
