@@ -20,8 +20,8 @@ mov	BX, [BP]
 mov	EX, [SI]
 mov	DX, [DI]
 
-mov	DATA1, AX
-mov	DATA1, BX
+mov	470, AX
+mov	470, BX
 
 L1:
 mov	[BX], AX
@@ -50,8 +50,8 @@ add	BX, [BP]
 add	CX, [SI]
 add	DX, [DI]
 
-add	DATA1, AX
-add	DATA1, BX
+add	470, AX
+add	470, BX
 
 L2:
 add	[BX], AX
@@ -82,8 +82,8 @@ sub	CX, [SI]
 sub	DX, [DI]
 
 L6:
-sub	DATA2, AX
-sub	DATA2, BX
+sub	476, AX
+sub	476, BX
 
 L7:
 sub	[BX], AX
@@ -110,7 +110,7 @@ DEC	DX
 
 INT 21
 
-DATA1	DW	259
-DATA2	DW	-1
+470	DW	259
+476	DW	-1
 
 ;
