@@ -194,6 +194,7 @@ void read_second(FILE* input, FILE* output, SymbolMappingTable* table) {
 
     // 한 줄씩 데이터를 읽음
     while (fgets(line, MAX_LINE_LENGTH, input) != NULL) {
+        address = 0;
         if (line[0] == '\n') {
             fprintf(output, "\n");
             continue;
@@ -212,8 +213,7 @@ void read_second(FILE* input, FILE* output, SymbolMappingTable* table) {
                 token[len_token] = '\0';
                 
                 replace(token, table);
-                //printf("%s", token);
-                //printf("%c",line[pos_token + len_token]);
+                if(strcmp(token, "") != 0) address++;
 
                 fprintf(output, "%s", token); // 치환된 token 출력
                 fprintf(output, "%c", line[pos_token + len_token]);
@@ -221,11 +221,9 @@ void read_second(FILE* input, FILE* output, SymbolMappingTable* table) {
                 pos_token += len_token + 1; // 구분자 이후로 진행
             } else {
                 // 더 이상 구분자가 없다면 나머지 문자열 출력
-                //fprintf(output, "%s", line + pos_token);
-                fprintf(output, " : %d\n", --address);
+                fprintf(output, " : %d\n", address);
                 break;
             }
-            address++;
         }
     }
 }

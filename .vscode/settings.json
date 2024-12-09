@@ -1,6 +1,9 @@
 {
   "files.associations": {
     "string.h": "c",
-    "functional": "c"
+    "functional": "c",
+    "string": "c",
+    "format": "c",
+    "random": "c"
   }
 }

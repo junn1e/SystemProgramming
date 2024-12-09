@@ -1,55 +1,55 @@
-	MOV AX, 257 : 3
-	MOV CX, 254 : 6
-	MOV BL, 10H : 9
+	op reg16, 257 : 3
+	op reg16, 254 : 3
+	op reg8, numH : 3
 
-	MOV AL, BL : 12
-	MOV BX, DX : 15
+	op reg8, BL : 3
+	op reg16, DX : 3
 
-L1: 	MOV AX, DATA1 : 19
-	MOV BX, DATA2 : 22
+sym: 	op reg16, DATA1 : 4
+	op reg16, DATA2 : 3
 
-	MOV    222, AX : 28
-	MOV    228, BX : 34
-	MOV    DATA3, AX : 40
-	MOV    DATA4, BX : 46
+	op sym, AX : 3
+	op sym, BX : 3
+	op sym, AX : 3
+	op sym, BX : 3
 
-	JA  L1 : 48
-	JB  L2 : 50
+	op L1 : 2
+	op L2 : 2
 
-	ADD AX, 257 : 53
-	ADD [CX], 16 : 58
-	ADD [BL], 10 : 63
-	ADD AX, [BX+SI] : 68
+	op reg16, 257 : 3
+	op [reg16], 16 : 3
+	op [reg8], 10 : 3
+	op reg16, [reg16+reg16] : 4
 
-	ADD DI, AX : 71
-	ADD BX, [DX] : 75
+	op reg16, AX : 3
+	op reg16, [reg16] : 3
 
-L2: 	SUB AX, 257 : 79
-L3: 	SUB AX, BX : 83
-	SUB CX, AX : 86
-	CMP BX, DX : 89
+sym: 	op reg16, 257 : 4
+sym: 	op reg16, BX : 4
+	op reg16, AX : 3
+	op reg16, DX : 3
 
-L4: 	SUB AX, DATA2 : 93
-L5: 	SUB BX, DATA1 : 97
+sym: 	op reg16, DATA2 : 4
+sym: 	op reg16, DATA1 : 4
 
-	MOV    DATA4, AX : 103
-	MOV    DATA3, BX : 109
+	op  sym, AX : 3
+	op  sym, BX : 3
 
-L6: 	SUB 228, AX : 113
-L7: 	SUB 222, BX : 117
+sym: 	op sym, AX : 4
+sym: 	op sym, BX : 4
 
-	JZ L3 : 118
-	JA L4 : 119
-	JB L5 : 120
-	JAE L6 : 121
-	JBE L7 : 122
+	op L3 : 2
+	op L4 : 2
+	op L5 : 2
+	opE L6 : 2
+	opE L7 : 2
 
-	INC AX : 123
-	DEC DX : 124
+	op AX : 2
+	op DX : 2
 
-	INT 21H : 125
+	op 21H : 2
 
-222 DW 259 : 127
-228 DW 256 : 129
-DATA3 DB 17 : 131
-DATA4 DB  : 132
+sym pop 259 : 3
+sym pop 256 : 3
+sym pop 17 : 3
+sym pop  : 2

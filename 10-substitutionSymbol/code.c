@@ -54,7 +54,7 @@ void read_first(FILE* input, Symbol* symbolTable, int* symbolCount) {
                 addSymbol(symbolTable, symbolCount, token, address);
             }
             token = strtok(NULL, delimiter);
-            address += 1;
+            address += 2;
         }
     }
 }

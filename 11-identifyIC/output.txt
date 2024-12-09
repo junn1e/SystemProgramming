@@ -1,55 +1,55 @@
-	op reg16, num
-	op reg16, num
-	op reg8, num
+	MOV[op] AX[reg16], 257[num]
+	MOV[op] CX[reg16], 254[num]
+	MOV[op] BL[reg8], 10H[num]
 
-	op reg8, reg8
-	op reg16, reg16
+	MOV[op] AL[reg8], BL[reg8]
+	MOV[op] BX[reg16], DX[reg16]
 
-sym: 	op reg16, sym
-	op reg16, sym
+L1:[sym] 	MOV[op] AX[reg16], DATA1[sym]
+	MOV[op] BX[reg16], DATA2[sym]
 
-	op    sym, reg16
-	op    sym, reg16
-	op    sym, reg16
-	op    sym, reg16
+	MOV[op]    DATA1[sym], AX[reg16]
+	MOV[op]    DATA2[sym], BX[reg16]
+	MOV[op]    DATA3[sym], AX[reg16]
+	MOV[op]    DATA4[sym], BX[reg16]
 
-	op  sym
-	op  sym
+	JA[op]  L1[sym]
+	JB[op]  L2[sym]
 
-	op reg16, num
-	op [reg16], num
-	op [reg8], num
-	op reg16, [reg16+reg16]
+	ADD[op] AX[reg16], 257[num]
+	ADD[op] [CX[reg16]], 16[num]
+	ADD[op] [BL[reg8]], 10[num]
+	ADD[op] AX[reg16], [BX[reg16]+SI[reg16]]
 
-	op reg16, reg16
-	op reg16, [reg16]
+	ADD[op] DI[reg16], AX[reg16]
+	ADD[op] BX[reg16], [DX[reg16]]
 
-sym: 	op reg16, num
-sym: 	op reg16, reg16
-	op reg16, reg16
-	op reg16, reg16
+L2:[sym] 	SUB[op] AX[reg16], 257[num]
+L3:[sym] 	SUB[op] AX[reg16], BX[reg16]
+	SUB[op] CX[reg16], AX[reg16]
+	CMP[op] BX[reg16], DX[reg16]
 
-sym: 	op reg16, sym
-sym: 	op reg16, sym
+L4:[sym] 	SUB[op] AX[reg16], DATA2[sym]
+L5:[sym] 	SUB[op] BX[reg16], DATA1[sym]
 
-	op    sym, reg16
-	op    sym, reg16
+	MOV[op]    DATA4[sym], AX[reg16]
+	MOV[op]    DATA3[sym], BX[reg16]
 
-sym: 	op sym, reg16
-sym: 	op sym, reg16
+L6:[sym] 	SUB[op] DATA2[sym], AX[reg16]
+L7:[sym] 	SUB[op] DATA1[sym], BX[reg16]
 
-	op sym
-	op sym
-	op sym
-	opE sym
-	opE sym
+	JZ[op] L3[sym]
+	JA[op] L4[sym]
+	JB[op] L5[sym]
+	JAE[opE] L6[sym]
+	JBE[opE] L7[sym]
 
-	op reg16
-	op reg16
+	INC[op] AX[reg16]
+	DEC[op] DX[reg16]
 
-	op num
+	INT[op] 21H[num]
 
-sym pop num
-sym pop num
-sym pop num
-sym pop 254
+DATA1[sym] DW[pop] 259[num]
+DATA2[sym] DW[pop] 256[num]
+DATA3[sym] DB[pop] 17[num]
+DATA4[sym] DB[pop] 254

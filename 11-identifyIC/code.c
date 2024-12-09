@@ -140,51 +140,9 @@ void printTable(SymbolMappingTable *table) {
     printf("심볼 개수 : %d", table->symbol_count);
 }
 
-// 이 코드 문제 : 공백 유지하는 건 좋은데, 이미 치환된 심볼을 다른걸로 또 치환함
-// 하는 일 : 테이블을 기반으로 치환 후 output에 저장.
-/*
-void read_second(FILE* input, FILE* output, SymbolMappingTable* table) {
-    char line[MAX_LINE_LENGTH]; // 입력 파일에서 읽은 한 줄을 저장할 버퍼
-
-    // 입력 파일에서 한 줄씩 읽음
-    while (fgets(line, MAX_LINE_LENGTH, input) != NULL)
-    {
-        // 테이블의 모든 심볼에 대해 실행
-        for (int i = 0; i < table->symbol_count; i++)
-        {
-            // 테이블에 있는 심볼(source)이 문자열에 있는지 확인
-            char *pos = strstr(line, table->mapping_table[i]->source);
-            while (pos != NULL)
-            {
-                // 기존 줄을 덮어씌울 문자열 temp선언
-                char temp[MAX_LINE_LENGTH];
-                temp[0] = '\0';
-
-                // symbolpos : 심볼의 시작 인덱스값
-                int symbolpos = pos - line;
-
-                // temp 만들기. (앞부분) + 심볼 + (뒷부분)순
-                strncpy(temp, line, symbolpos);
-                temp[symbolpos] = '\0';
-                strcat(temp, table->mapping_table[i]->target);
-                strcat(temp, pos + strlen(table->mapping_table[i]->source));
-
-                // 기존 줄 덮어씌우기
-                strcpy(line, temp);
-
-                // 방금 바꾼 심볼이 같은 줄에 또 있는지 확인
-                pos = strstr(line, table->mapping_table[i]->source);
-            }
-        }
-        // 결과 output에 출력
-        fprintf(output, "%s", line);
-    }
-}
-*/
-
-
 // 하는 일 : 테이블을 기반으로 문자열에 있는 심볼 치환
-int replace(char* string, SymbolMappingTable* table){
+int replace(FILE* output, char* string, SymbolMappingTable* table){
+    fprintf(output, "%s", string);
     // 테이블의 모든 심볼에 대해 실행
     for (int i = 0; i < table->symbol_count; i++)
     {
@@ -225,6 +183,7 @@ int str_tok(char* string, const char* delimiter) {
 
 // 하는 일 : 테이블을 기반으로 치환 후 output에 저장.
 void read_second(FILE* input, FILE* output, SymbolMappingTable* table) {
+    int a = 0;
     char line[MAX_LINE_LENGTH]; // 데이터 한 줄의 길이
     const char* delimiter = ", []+-=\n";
     char token[MAX_LINE_LENGTH];
@@ -249,11 +208,9 @@ void read_second(FILE* input, FILE* output, SymbolMappingTable* table) {
                 strncpy(token, line + pos_token, len_token);
                 token[len_token] = '\0';
                 
-                replace(token, table);
-                //printf("%s", token);
-                //printf("%c",line[pos_token + len_token]);
-
-                fprintf(output, "%s", token); // 치환된 token 출력
+                replace(output, token, table);
+                cleanse(token);
+                if(strcmp(token, "") != 0)fprintf(output, "[%s]", token); // 치환된 token 출력
                 fprintf(output, "%c", line[pos_token + len_token]);
 
                 pos_token += len_token + 1; // 구분자 이후로 진행
